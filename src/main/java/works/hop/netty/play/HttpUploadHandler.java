@@ -20,9 +20,9 @@ import java.util.logging.Logger;
 
 import static io.netty.buffer.Unpooled.copiedBuffer;
 
-public class HttpUploadServerHandler extends SimpleChannelInboundHandler<HttpObject> {
+public class HttpUploadHandler extends SimpleChannelInboundHandler<HttpObject> {
 
-    private static final Logger logger = Logger.getLogger(HttpUploadServerHandler.class.getName());
+    private static final Logger logger = Logger.getLogger(HttpUploadHandler.class.getName());
     private static final HttpDataFactory factory =
             new DefaultHttpDataFactory(DefaultHttpDataFactory.MINSIZE); // Disk if size exceed
 

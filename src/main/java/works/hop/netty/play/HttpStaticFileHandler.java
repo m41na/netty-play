@@ -13,6 +13,7 @@ import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -32,7 +33,7 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  *
  * <h3>How Browser Caching Works</h3>
  * <p>
- * Web browser caching works with HTTP headers as illustrated by the following
+ * Web browser caching works with HTTP headers as illustrated by the follower
  * sample:
  * <ol>
  * <li>Request #1 returns the content of {@code /file1.txt}.</li>
@@ -79,9 +80,9 @@ public class HttpStaticFileHandler extends SimpleChannelInboundHandler<FullHttpR
     private static final Pattern ALLOWED_FILE_NAME = Pattern.compile("[^-\\._]?[^<>&\\\"]*");
     private FullHttpRequest request;
 
-    private static String sanitizeUri(String raw) {
+    private static String sanitizeUri(String raw) throws UnsupportedEncodingException {
         // Decode the path.
-        String uri = URLDecoder.decode(raw, StandardCharsets.UTF_8);
+        String uri = URLDecoder.decode(raw, StandardCharsets.UTF_8.toString());
 
         if (uri.isEmpty() || uri.charAt(0) != '/') {
             return null;

@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.practicaldime.works</groupId>
-    <artifactId>zesty-net</artifactId>
+    <artifactId>netty-play</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>zesty-net</name>
+    <name>netty-play</name>
     <url>http://www.example.com</url>
 
     <properties>
@@ -29,9 +29,15 @@
         </dependency>
 
         <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.9</version>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13</version>
             <scope>test</scope>
         </dependency>
 
