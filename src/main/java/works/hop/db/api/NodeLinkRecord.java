@@ -7,42 +7,57 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class AdjacencyLinkRecord extends Record<AdjacencyLink> {
+class LongNodeLink extends NodeLink<Long> {
 
-    public final static String insertRecord = "insert into tbl_adjacency_links (table_from, column_from, value_from, table_to, column_to, value_to, link_name) values (?, ?, ?, ?, ?, ?, ?);";
-    public final static String updateRecord = "update tbl_adjacency_links set table_from=?, column_from=?, value_from=?, table_to=?, column_to=?, value_to=?, link_name=? where " +
+    public LongNodeLink(String tableFrom, String columnFrom, Long valueFrom, String tableTo, String columnTo, Long valueTo, String name, Integer weight) {
+        super(tableFrom, columnFrom, valueFrom, tableTo, columnTo, valueTo, name, weight);
+    }
+
+    public LongNodeLink(String tableFrom, String columnFrom, Long valueFrom, String tableTo, String columnTo, Long valueTo, String name) {
+        super(tableFrom, columnFrom, valueFrom, tableTo, columnTo, valueTo, name, 0);
+    }
+
+    public LongNodeLink(Node from, Node to, String name) {
+        super(from, to, name);
+    }
+}
+
+public class NodeLinkRecord extends Record<LongNodeLink> {
+
+    public final static String insertRecord = "insert into tbl_node_links (table_from, column_from, value_from, table_to, column_to, value_to, link_name) values (?, ?, ?, ?, ?, ?, ?);";
+    public final static String updateRecord = "update tbl_node_links set table_from=?, column_from=?, value_from=?, table_to=?, column_to=?, value_to=?, link_name=? where " +
             "table_from=? and column_from=? and value_from=? and table_to=? and column_to=? and value_to=? and link_name=?";
-    public final static String deleteRecord = "delete from tbl_adjacency_links where table_from=? and column_from=? and value_from=? and table_to=? and column_to=? and value_to=? and link_name=?";
-    public final static String checkRecordExists = "select 1 from tbl_adjacency_links where table_from=? and column_from=? and value_from=? and table_to=? and column_to=? and value_to=? and link_name=? limit 1";
-    public final static String fetchLinksOut = "select table_from, column_from, value_from, table_to, column_to, value_to, link_name from tbl_adjacency_links where table_from=? and column_from=? and link_name=? offset ? limit ?";
-    public final static String fetchLinksIn = "select table_from, column_from, value_from, table_to, column_to, value_to, link_name from tbl_adjacency_links where table_to=? and column_to=? and link_name=? offset ? limit ?";
-    public final static String fetchLinksByName = "select table_from, column_from, value_from, table_to, column_to, value_to, link_name from tbl_adjacency_links where link_name=? offset ? limit ?";
-    public final static String clearRecords = "truncate table tbl_adjacency_links";
+    public final static String deleteRecord = "delete from tbl_node_links where table_from=? and column_from=? and value_from=? and table_to=? and column_to=? and value_to=? and link_name=?";
+    public final static String checkRecordExists = "select 1 from tbl_node_links where table_from=? and column_from=? and value_from=? and table_to=? and column_to=? and value_to=? and link_name=? limit 1";
+    public final static String fetchLinksOut = "select table_from, column_from, value_from, table_to, column_to, value_to, link_name from tbl_node_links where table_from=? and column_from=? and link_name=? offset ? limit ?";
+    public final static String fetchLinksIn = "select table_from, column_from, value_from, table_to, column_to, value_to, link_name from tbl_node_links where table_to=? and column_to=? and link_name=? offset ? limit ?";
+    public final static String fetchLinksByName = "select table_from, column_from, value_from, table_to, column_to, value_to, link_name from tbl_node_links where link_name=? offset ? limit ?";
+    public final static String clearRecords = "truncate table tbl_node_links";
 
-    public AdjacencyLinkRecord() {
+    public NodeLinkRecord() {
         this(PgDbConnect.instance());
     }
 
-    public AdjacencyLinkRecord(DbConnect dbConnect) {
-        super(AdjacencyLink.class, dbConnect);
+    public NodeLinkRecord(DbConnect dbConnect) {
+        super(LongNodeLink.class, dbConnect);
     }
 
     @Override
     public String tableName() {
-        return "tbl_adjacency_links";
+        return "tbl_node_links";
     }
 
     @Override
     public String[] dropTable() {
         return new String[]{
-                "drop table if exists tbl_adjacency_links;"
+                "drop table if exists tbl_node_links;"
         };
     }
 
     @Override
     public String[] createTable() {
         return new String[]{
-                "create table if not exists tbl_adjacency_links\n" +
+                "create table if not exists tbl_node_links\n" +
                         "(\n" +
                         "    table_from  varchar(64) not null,\n" +
                         "    column_from varchar(64) not null,\n" +
@@ -68,21 +83,21 @@ public class AdjacencyLinkRecord extends Record<AdjacencyLink> {
     }
 
     @Override
-    public void prepareInsert(PreparedStatement pst, AdjacencyLink record) throws SQLException {
+    public void prepareInsert(PreparedStatement pst, LongNodeLink record) throws SQLException {
         pst.setString(1, record.from.table);
         pst.setString(2, record.from.column);
         pst.setLong(3, record.from.value);
         pst.setString(4, record.to.table);
         pst.setString(5, record.to.column);
         pst.setLong(6, record.to.value);
-        pst.setString(7, record.linkName);
+        pst.setString(7, record.name);
     }
 
     @Override
-    public AdjacencyLink extractRecord(ResultSet rs) throws SQLException {
+    public LongNodeLink extractRecord(ResultSet rs) throws SQLException {
         if (rs.next()) {
             //table_from, column_from, table_to, column_to, link_name, value_to
-            return new AdjacencyLink(
+            return new LongNodeLink(
                     rs.getString("table_from"),
                     rs.getString("column_from"),
                     rs.getLong("value_from"),
@@ -106,10 +121,10 @@ public class AdjacencyLinkRecord extends Record<AdjacencyLink> {
     }
 
     @Override
-    public List<AdjacencyLink> extractRecords(ResultSet rs) throws SQLException {
-        List<AdjacencyLink> records = new LinkedList<>();
+    public List<LongNodeLink> extractRecords(ResultSet rs) throws SQLException {
+        List<LongNodeLink> records = new LinkedList<>();
         while (rs.next()) {
-            records.add(new AdjacencyLink(
+            records.add(new LongNodeLink(
                     rs.getString("table_from"),
                     rs.getString("column_from"),
                     rs.getLong("value_from"),

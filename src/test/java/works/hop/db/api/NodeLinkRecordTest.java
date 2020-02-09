@@ -9,38 +9,38 @@ import java.util.*;
 
 import static org.junit.Assert.*;
 
-public class AdjacencyLinkRecordTest {
+public class NodeLinkRecordTest {
 
-    private AdjacencyLinkRecord adjacency = new AdjacencyLinkRecord();
+    private NodeLinkRecord edges = new NodeLinkRecord();
     private LinkNameRecord links = new LinkNameRecord();
 
     @Before
     public void setUp() {
-        adjacency.destroy();
+        edges.destroy();
         links.destroy();
         links.init();
-        adjacency.init();
+        edges.init();
 
         String linksSource = "/tbl_link_names_test.sql";
         Integer linksCount = links.loadSql(linksSource, 10);
         System.out.println("setUp loaded " + linksCount + " records");
 
-        String adjacencySource = "/tbl_adjacency_links_test.sql";
-        Integer adjacencyCount = adjacency.loadSql(adjacencySource, 10);
+        String adjacencySource = "/tbl_node_links_test.sql";
+        Integer adjacencyCount = edges.loadSql(adjacencySource, 10);
         System.out.println("setUp loaded " + adjacencyCount + " records");
     }
 
     @After
     public void tearDown() {
-        adjacency.destroy();
+        edges.destroy();
         links.destroy();
         System.out.println("tearDown resetting database");
     }
 
     @Test
     public void createRecord() {
-        AdjacencyLink account = new AdjacencyLink("tbl_user", "user_account", 1L, "tbl_account", "id", 6L, "user-account");
-        Optional<Long> res = adjacency.insert(AdjacencyLinkRecord.insertRecord, account, false);
+        LongNodeLink account = new LongNodeLink("tbl_user", "user_account", 1L, "tbl_account", "id", 6L, "user-account");
+        Optional<Long> res = edges.insert(NodeLinkRecord.insertRecord, account, false);
         res.ifPresent(val -> assertEquals(val.longValue(), 1));
     }
 
@@ -63,19 +63,19 @@ public class AdjacencyLinkRecordTest {
         params.put(13, 1L);                 //current value_to
         params.put(14, "user-account");     //current link_name
 
-        Integer result = adjacency.update(AdjacencyLinkRecord.updateRecord, params);
+        Integer result = edges.update(NodeLinkRecord.updateRecord, params);
         assertEquals(result.intValue(), 1);
 
         //apply updated value and check if the updated record exists
         params.put(6, 8L);              //current value_to
-        Boolean exists = adjacency.exists(AdjacencyLinkRecord.checkRecordExists, params);
+        Boolean exists = edges.exists(NodeLinkRecord.checkRecordExists, params);
         assertTrue(exists);
     }
 
     @Test
     public void fetchLinksOut() {
         //table_from=? and column_from=? and link_name=? offset ? limit ?
-        List<AdjacencyLink> list = adjacency.selectList(AdjacencyLinkRecord.fetchLinksOut, pst -> {
+        List<LongNodeLink> list = edges.selectList(NodeLinkRecord.fetchLinksOut, pst -> {
             try {
                 pst.setString(1, "tbl_user");
                 pst.setString(2, "user_account");
@@ -93,7 +93,7 @@ public class AdjacencyLinkRecordTest {
     @Test
     public void fetchLinksIn() {
         //table_to=? and column_to=? and link_name=? offset ? limit ?
-        List<AdjacencyLink> list = adjacency.selectList(AdjacencyLinkRecord.fetchLinksIn, pst -> {
+        List<LongNodeLink> list = edges.selectList(NodeLinkRecord.fetchLinksIn, pst -> {
             try {
                 pst.setString(1, "tbl_account");
                 pst.setString(2, "id");
@@ -111,7 +111,7 @@ public class AdjacencyLinkRecordTest {
     @Test
     public void fetchLinksByName() throws SQLException {
         //link_name=? offset ? limit ?
-        List<AdjacencyLink> accounts = adjacency.selectList(AdjacencyLinkRecord.fetchLinksByName, pst -> {
+        List<LongNodeLink> accounts = edges.selectList(NodeLinkRecord.fetchLinksByName, pst -> {
             try {
                 pst.setString(1, "user-account");
                 pst.setInt(2, 0);
@@ -135,13 +135,13 @@ public class AdjacencyLinkRecordTest {
         params.put(6, 1L);              //value_to
         params.put(7, "user-account");  //link_name
         //record before delete
-        Boolean exists = adjacency.exists(AdjacencyLinkRecord.checkRecordExists, params);
+        Boolean exists = edges.exists(NodeLinkRecord.checkRecordExists, params);
         assertTrue(exists);
         //delete action - table_from=? and column_from=? and table_to=? and column_to=? and link_name=? and value_to=?
-        Integer result = adjacency.delete(AdjacencyLinkRecord.deleteRecord, params);
+        Integer result = edges.delete(NodeLinkRecord.deleteRecord, params);
         assertEquals(result.intValue(), 1);
         //records after delete
-        exists = adjacency.exists(AdjacencyLinkRecord.checkRecordExists, params);
+        exists = edges.exists(NodeLinkRecord.checkRecordExists, params);
         assertFalse(exists);
     }
 
@@ -157,15 +157,15 @@ public class AdjacencyLinkRecordTest {
         params.put(7, "user-account");  //current link_name
 
         //check if any records exists before purge
-        Boolean exists = adjacency.exists(AdjacencyLinkRecord.checkRecordExists, params);
+        Boolean exists = edges.exists(NodeLinkRecord.checkRecordExists, params);
         assertTrue(exists);
 
         //purge records
-        Integer result = adjacency.truncate(AdjacencyLinkRecord.clearRecords);
+        Integer result = edges.truncate(NodeLinkRecord.clearRecords);
         assertEquals(result.intValue(), 0);
 
         //verify record does not exist at this point
-        exists = adjacency.exists(AdjacencyLinkRecord.checkRecordExists, params);
+        exists = edges.exists(NodeLinkRecord.checkRecordExists, params);
         assertFalse(exists);
     }
 }

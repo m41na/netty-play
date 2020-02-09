@@ -12,7 +12,7 @@ public class TestLoader extends AbstractRecord<Void> {
             "/tbl_team_test.sql",
             "/tbl_team_members_test.sql",
             "/tbl_link_names_test.sql",
-            "/tbl_adjacency_links_test.sql",
+            "/tbl_node_links_test.sql",
     };
 
     public TestLoader(){

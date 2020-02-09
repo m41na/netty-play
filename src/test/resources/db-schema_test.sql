@@ -22,7 +22,7 @@ drop table if exists tbl_account;
 drop index if exists idx_account_emails;
 drop index if exists idx_account_users;
 drop type if exists account_type;
-drop table if exists tbl_adjacency_links;
+drop table if exists tbl_node_links;
 drop table if exists tbl_link_names;
 
 create table if not exists tbl_link_names
@@ -33,7 +33,7 @@ create table if not exists tbl_link_names
     primary key (name)
 );
 
-create table if not exists tbl_adjacency_links
+create table if not exists tbl_node_links
 (
     table_from  varchar(64) not null,
     column_from varchar(64) not null,
