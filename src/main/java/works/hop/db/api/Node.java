@@ -2,7 +2,7 @@ package works.hop.db.api;
 
 import java.util.Objects;
 
-public class Node<V extends Comparable<V>> implements Comparable<Node<V>>, Visitable {
+public class Node<V extends Comparable<V>> implements Comparable<Node<V>> {
 
     public final String table;
     public final String column;
@@ -31,13 +31,13 @@ public class Node<V extends Comparable<V>> implements Comparable<Node<V>>, Visit
 
     @Override
     public int compareTo(Node<V> o) {
-        if(this == o) return 0;
+        if (this == o) return 0;
         int comparison = table.compareTo(o.table);
-        if(comparison != 0){
+        if (comparison != 0) {
             return comparison;
         }
         comparison = column.compareTo(o.column);
-        if(comparison != 0){
+        if (comparison != 0) {
             return comparison;
         }
         return value.compareTo(o.value);
@@ -50,10 +50,5 @@ public class Node<V extends Comparable<V>> implements Comparable<Node<V>>, Visit
                 ", column='" + column + '\'' +
                 ", value=" + value +
                 '}';
-    }
-
-    @Override
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
     }
 }

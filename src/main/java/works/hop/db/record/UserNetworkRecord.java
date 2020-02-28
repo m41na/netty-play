@@ -1,7 +1,7 @@
 package works.hop.db.record;
 
-import works.hop.db.api.DbConnect;
-import works.hop.db.api.PgDbConnect;
+import works.hop.db.api.DbConnector;
+import works.hop.db.api.PgDbConnector;
 import works.hop.db.api.Record;
 import works.hop.db.entity.UserNetwork;
 
@@ -35,11 +35,11 @@ public class UserNetworkRecord extends Record<UserNetwork> {
     public final static String clearRecords = "truncate table tbl_users_network";
 
     public UserNetworkRecord() {
-        this(PgDbConnect.instance());
+        this(PgDbConnector.instance());
     }
 
-    public UserNetworkRecord(DbConnect dbConnect) {
-        super(UserNetwork.class, dbConnect);
+    public UserNetworkRecord(DbConnector dbConnector) {
+        super(UserNetwork.class, dbConnector);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class UserNetworkRecord extends Record<UserNetwork> {
     public void prepareInsert(PreparedStatement pst, UserNetwork record) throws SQLException {
         pst.setLong(1, record.followee);
         pst.setLong(2, record.follower);
-        pst.setString(3, record.type.toString());
+        pst.setString(3, record.status.toString());
     }
 
     @Override

@@ -11,9 +11,9 @@ nbproject
 .idea/**
 **/.idea/**
 *.iml
-
 # npm artifacts
 **/node_modules
+**/.next
 
 # Log file
 *.log

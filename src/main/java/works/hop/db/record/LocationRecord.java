@@ -1,7 +1,7 @@
 package works.hop.db.record;
 
-import works.hop.db.api.DbConnect;
-import works.hop.db.api.PgDbConnect;
+import works.hop.db.api.DbConnector;
+import works.hop.db.api.PgDbConnector;
 import works.hop.db.api.Record;
 import works.hop.db.entity.Location;
 
@@ -23,11 +23,11 @@ public class LocationRecord extends Record<Location> {
     public final static String clearRecords = "truncate table tbl_location";
 
     public LocationRecord() {
-        this(PgDbConnect.instance());
+        this(PgDbConnector.instance());
     }
 
-    public LocationRecord(DbConnect dbConnect) {
-        super(Location.class, dbConnect);
+    public LocationRecord(DbConnector dbConnector) {
+        super(Location.class, dbConnector);
     }
 
     @Override

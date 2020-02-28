@@ -55,24 +55,25 @@ insert into tbl_node_links ( table_from, column_from, value_from, table_to, colu
 insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_team_members','member', 14, 'tbl_user', 'id', 4, 'player-user');
 insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_team_members','member', 15, 'tbl_user', 'id', 5, 'player-user');
 
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 1, 'tbl_user', 'id', 1, 'user-followee');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 2, 'tbl_user', 'id', 1, 'user-followee');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 3, 'tbl_user', 'id', 1, 'user-followee');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 4, 'tbl_user', 'id', 1, 'user-followee');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 5, 'tbl_user', 'id', 2, 'user-followee');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 6, 'tbl_user', 'id', 2, 'user-followee');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 7, 'tbl_user', 'id', 2, 'user-followee');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 8, 'tbl_user', 'id', 3, 'user-followee');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 9, 'tbl_user', 'id', 3, 'user-followee');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 10, 'tbl_user', 'id', 4, 'user-followee');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 1, 'tbl_user', 'id', 1, 'follower-user');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 2, 'tbl_user', 'id', 2, 'follower-user');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 3, 'tbl_user', 'id', 3, 'follower-user');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 4, 'tbl_user', 'id', 4, 'follower-user');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 5, 'tbl_user', 'id', 5, 'follower-user');
 
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 1, 'tbl_user', 'id', 2, 'user-follower');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 2, 'tbl_user', 'id', 3, 'user-follower');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 3, 'tbl_user', 'id', 4, 'user-follower');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 4, 'tbl_user', 'id', 5, 'user-follower');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 5, 'tbl_user', 'id', 3, 'user-follower');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 6, 'tbl_user', 'id', 4, 'user-follower');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 7, 'tbl_user', 'id', 5, 'user-follower');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 8, 'tbl_user', 'id', 4, 'user-follower');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 9, 'tbl_user', 'id', 5, 'user-follower');
-insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 10, 'tbl_user', 'id', 5, 'user-follower');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 1, 'tbl_user', 'id', 1, 'followee-user');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 2, 'tbl_user', 'id', 2, 'followee-user');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 3, 'tbl_user', 'id', 3, 'followee-user');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 4, 'tbl_user', 'id', 4, 'followee-user');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','followee', 5, 'tbl_user', 'id', 5, 'followee-user');
+
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 1, 'tbl_users_network', 'followee', 2, 'following');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 1, 'tbl_users_network', 'followee', 3, 'following');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 1, 'tbl_users_network', 'followee', 4, 'following');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 1, 'tbl_users_network', 'followee', 5, 'following');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 2, 'tbl_users_network', 'followee', 3, 'following');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 2, 'tbl_users_network', 'followee', 4, 'following');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 2, 'tbl_users_network', 'followee', 5, 'following');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 3, 'tbl_users_network', 'followee', 4, 'following');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 3, 'tbl_users_network', 'followee', 5, 'following');
+insert into tbl_node_links ( table_from, column_from, value_from, table_to, column_to, value_to, link_name ) values ('tbl_users_network','follower', 4, 'tbl_users_network', 'followee', 5, 'following');

@@ -21,9 +21,9 @@ public class AdjacencyListDemo {
         graph.addEdge(1, 4);
 
         System.out.println("bfs Visits:");
-        //graph.bfs();
+        graph.bfs();
         System.out.println("dfs Visits:");
-        graph.dfs(0);
+        //graph.dfs(0);
         System.out.println();
     }
 

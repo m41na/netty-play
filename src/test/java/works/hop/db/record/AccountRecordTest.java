@@ -20,8 +20,9 @@ public class AccountRecordTest {
 
     @Before
     public void setUp() {
-        records.destroy();
-        records.init();
+        TestUtils.resetDatabase();
+//        records.destroy();
+//        records.init();
         String source = "/tbl_account_test.sql";
         Integer count = records.loadSql(source, 10);
         System.out.println("setUp loaded " + count + " records");
@@ -29,8 +30,8 @@ public class AccountRecordTest {
 
     @After
     public void tearDown() {
-        records.destroy();
-        System.out.println("tearDown resetting database");
+//        records.destroy();
+//        System.out.println("tearDown resetting database");
     }
 
     @Test
@@ -105,8 +106,9 @@ public class AccountRecordTest {
         assertNull(james);
     }
 
-    @Test
+    @Test(expected = SQLException.class)
     public void purgeRecords() throws SQLException {
+        //this will fail since table is is referenced in a foreign key relationship
         Integer result = records.truncate(AccountRecord.clearRecords);
         assertEquals(result.intValue(), 0);
         List<Account> accounts = records.selectList(AccountRecord.fetchRecords, Collections.emptyMap(), 0, 5);

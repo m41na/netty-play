@@ -8,7 +8,7 @@ import java.util.Map;
 
 public abstract class AbstractRecord<T> extends Record<T> {
 
-    public AbstractRecord(Class<T> type, DbConnect dbc) {
+    public AbstractRecord(Class<T> type, DbConnector dbc) {
         super(type, dbc);
     }
 

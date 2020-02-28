@@ -134,7 +134,7 @@ public class UserNetworkRecordTest {
         });
         assertEquals(unet.followee.longValue(), 5);
         assertEquals(unet.follower.longValue(), 4);
-        assertEquals(unet.type, UserNetwork.FollowStatus.requested);
+        assertEquals(unet.status, UserNetwork.FollowStatus.requested);
     }
 
     @Test

@@ -16,10 +16,10 @@ public class TestLoader extends AbstractRecord<Void> {
     };
 
     public TestLoader(){
-        this(Void.class, PgDbConnect.instance());
+        this(Void.class, PgDbConnector.instance());
     }
 
-    public TestLoader(Class<Void> type, DbConnect dbc) {
+    public TestLoader(Class<Void> type, DbConnector dbc) {
         super(type, dbc);
     }
 

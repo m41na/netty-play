@@ -18,11 +18,11 @@ public class LinkNameRecord extends Record<LinkName> {
     public final static String clearRecords = "truncate table tbl_link_names";
 
     public LinkNameRecord() {
-        this(PgDbConnect.instance());
+        this(PgDbConnector.instance());
     }
 
-    public LinkNameRecord(DbConnect dbConnect) {
-        super(LinkName.class, dbConnect);
+    public LinkNameRecord(DbConnector dbConnector) {
+        super(LinkName.class, dbConnector);
     }
 
     @Override

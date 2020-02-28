@@ -1,7 +1,7 @@
 package works.hop.db.record;
 
-import works.hop.db.api.DbConnect;
-import works.hop.db.api.PgDbConnect;
+import works.hop.db.api.DbConnector;
+import works.hop.db.api.PgDbConnector;
 import works.hop.db.api.Record;
 import works.hop.db.entity.Account;
 
@@ -25,11 +25,11 @@ public class AccountRecord extends Record<Account> {
     public final static String clearRecords = "truncate table tbl_account";
 
     public AccountRecord() {
-        this(PgDbConnect.instance());
+        this(PgDbConnector.instance());
     }
 
-    public AccountRecord(DbConnect dbConnect) {
-        super(Account.class, dbConnect);
+    public AccountRecord(DbConnector dbConnector) {
+        super(Account.class, dbConnector);
     }
 
     @Override

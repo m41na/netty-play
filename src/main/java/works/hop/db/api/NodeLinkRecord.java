@@ -35,11 +35,11 @@ public class NodeLinkRecord extends Record<LongNodeLink> {
     public final static String clearRecords = "truncate table tbl_node_links";
 
     public NodeLinkRecord() {
-        this(PgDbConnect.instance());
+        this(PgDbConnector.instance());
     }
 
-    public NodeLinkRecord(DbConnect dbConnect) {
-        super(LongNodeLink.class, dbConnect);
+    public NodeLinkRecord(DbConnector dbConnector) {
+        super(LongNodeLink.class, dbConnector);
     }
 
     @Override
