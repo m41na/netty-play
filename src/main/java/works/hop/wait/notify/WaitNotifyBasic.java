@@ -2,7 +2,7 @@ package works.hop.wait.notify;
 
 import java.util.Scanner;
 
-public class WaitNotify {
+public class WaitNotifyBasic {
 
     public static void main(String[] args) throws InterruptedException {
         final Processor processor = new Processor();
